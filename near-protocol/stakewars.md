@@ -144,8 +144,10 @@ Error:  TypedError: [-32000] Server error: account nearkat does not exist while 
 
 Существует 5 разных способов верифицировать, что транзакция для открытия стейкинга попала в блокчейн:
 
+![&#x41D;&#x43E;&#x432;&#x43E;&#x435; &#x441;&#x43E;&#x431;&#x44B;&#x442;&#x438;&#x435; &#x432; &#x431;&#x43B;&#x43E;&#x43A;-&#x44D;&#x43A;&#x441;&#x43F;&#x43B;&#x43E;&#x440;&#x435;&#x440;&#x435;](../.gitbook/assets/stake_tx_explorer.png)
+
 1. Корректный ответ на транзакцию в `near-shell`
-2. Новое событие в [блок-эксплорере](https://explorer.betanet.nearprotocol.com/) `betanet`
+2. Новое событие в [блок-эксплорере](https://explorer.betanet.nearprotocol.com/) `betanet` \(см. картинку выше\)
 3. Правильное отображение баланса аккаунта, полученного командой `near state` 
 4. Обновления в логах `nearup`, сопровождаемые заглавной буквой "V"
 5. Запрос JSON RPC, отправленный на endpoint `validator` 
