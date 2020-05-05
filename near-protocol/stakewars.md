@@ -68,55 +68,53 @@ cat: /Users/nearkat/.near/betanet/validator_key.json: No such file or directory
 
 **Внимание:** при очистке папки `.near` будут также удалены ключи Следовательно, все созданные транзакции для стекинга надо будет заново подписать новым ключом.
 
-В отсутствии файлов в папке `.near` , `nearup` заново запросит  account ID в betanet. В случае успеха вы уведите примерно следующее:
+При отсутствии файлов в папке `.near` , `nearup` заново запросит account ID в betanet. В случае успеха вы уведите примерно следующее:
 
 ```text
 Pull docker image nearprotocol/nearcore:beta
 Setting up network configuration.
-Enter your account ID (leave empty if not going to be a validator): nearkat
+Enter your account ID (leave empty if not going to be a validator): zavodil.betanet
 Generating node key...
 Node key generated
 Generating validator key...
 Validator key generated
-Stake for user 'nearkat' with 'ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB'
+Stake for user 'zavodil.' with 'ed25519:8qfcviFnPucrMvN19f1hoVKhhtntGjosRHNJzaXiRem7'
 Starting NEAR client docker...
 Node is running! 
 To check logs call: docker logs --follow nearcore
 ```
 
-From this screen you can verify that: is set with the correct user 'nearkat' is automatically generated with the key `ed25519:GR2xDB5ERrRkXN76JzvfpY8ksz7vFdLVegarLsJbMZJL`
+По данному тексту можно удостовериться, что для юзера zavodil был автоматически сгенерированы ключи и получен публичный ключ`ed25519:8qfcviFnPucrMvN19f1hoVKhhtntGjosRHNJzaXiRem7`
 
-**HEADS UP:** Save this public key for later, you'll need it quite often in this tutorial.
+**Внимание:** Запишите этот публичный ключ, он нам еще пригодится позднее.
 
-#### Issue the staking transaction
+#### Открываем стейкинг 
 
-Get back to your `near-shell` machine and configure it to use `betanet`:
+Возвращаемся к `near-shell` и указываем что работаем с `betanet`:
 
-\(no output expected\)
-
-Then, issue this command to stake:
+Вводим команду для создание стейкинга
 
 ```text
 near stake <YOUR_ACCOUNT_ID> <VALIDATOR_KEYS_PUBLIC_KEY> <AMOUNT> --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com
 ```
 
-**HEADS UP:** must be set in NEAR, and you should have enough tokens in your account. Don't stake 100% of your account holdings: please leave enough tokens to issue smart contracts and pay your account storage \(100 $NEAR will do great\).
+**Внимание:** Размер стейкинга должен быть указан в NEAR, причем на аккаунте должно содержаться достаточное количество токенов. Не кладите в стейкинг 100% вашего баланса, оставьте необходимое количество токенов для работы смартконтракта и оплаты хранения данных аккаунта\(100 $NEAR будет более чем достаточно\).
 
-If you get an error like this one check if you correctly set `betanet` as the node environment:
+Вы можете получить следующую ошибку, если не указали что нода должна обращаться к `betanet` :
 
 ```text
-nearkat@nearkat ~ % near stake nearkat ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB 75000
+nearkat@nearkat ~ % near stake zavodil.betanet ed25519:8qfcviFnPucrMvN19f1hoVKhhtntGjosRHNJzaXiRem7 100
 Using options: {
   networkId: 'default',
   nodeUrl: 'https://rpc.nearprotocol.com',
   contractName: undefined,
   walletUrl: 'https://wallet.nearprotocol.com',
   helperUrl: 'https://helper.nearprotocol.com',
-  accountId: 'nearkat',
-  stakingKey: 'ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB',
-  amount: '75000'
+  accountId: 'zavodil.betanet',
+  stakingKey: 'ed25519:8qfcviFnPucrMvN19f1hoVKhhtntGjosRHNJzaXiRem7',
+  amount: '100'
 }
-Staking 75000 (75000000000000000000000000000) on nearkat with public key = ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB.
+Staking 100 (100000000000000000000000000) on zavodil with public key = ed25519:8qfcviFnPucrMvN19f1hoVKhhtntGjosRHNJzaXiRem7.
 Error:  TypedError: [-32000] Server error: account nearkat does not exist while viewing
     at JsonRpcProvider.sendJsonRpc (/usr/local/lib/node_modules/near-shell/node_modules/near-api-js/lib/providers/json-rpc-provider.js:113:27)
     at processTicksAndRejections (internal/process/task_queues.js:97:5)
@@ -130,26 +128,20 @@ Error:  TypedError: [-32000] Server error: account nearkat does not exist while 
 }
 ```
 
-To solve the issue, try to execute `export NODE_ENV=betanet` and issue the stake transaction again.
+Чтобы исправить ошибку, запустите команду `export NODE_ENV=betanet` и повторите транзакцию для создания стейкинга.
 
-### 4b. Stake funds with a delegation smart contract \(work in progress\)
+### 5. Получите токены для стейкинга через смарт-контракт делегирования \(в разработке\)
 
-This process is similar to the one above, with the difference that you have to deploy a delegation smart contract, and stake your funds through it.
+## Проверка работоспособности
 
-Once the contract is deployed, any user will be able to deposit funds into your staking contract, and delegate their stake to your validator node.
+Существует 5 разных способов верифицировать, что транзакция для открытия стейкинга попала в блокчейн:
 
-Follow the guide in the [Staking Pool contract](https://github.com/near/initial-contracts) repository for details.
-
-## Check if it worked
-
-You have five different ways to verify that your stake transaction was successfully included in the blockchain:
-
-1. A correct output from near shell
-2. A new event on the betanet block explorer
-3. A correct balance in your account, using `near state` command
-4. A change in the `nearup` logs displayng an uppercase "V"
-5. A query to the JSON RPC using the `validator` endpoint
-6. You should see a transaction receipt that ends with `status: { SuccessValue: '' }` similar to the one below:
+1. Корректный ответ на транзакцию в `near-shell`
+2. Новое событие в блок-эксплорере `betanet`
+3. Правильное отображение баланса аккаунта, полученного командой `near state` 
+4. Изменения в логах `nearup` отображаемое заглавной буквой "V"
+5. Запрос JSON RPC, отправленный на endpoint `validator` 
+6. Проверка транзакции. Вы получили транзакцию после открытия стейкинга которая содержит строку `status: { SuccessValue: '' }` и выглядит примерно так:
 
 ```text
 nearkat@nearkat ~ $ near stake nearkat ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB 70000
@@ -221,8 +213,8 @@ Staking 70000 (70000000000000000000000000000) on nearkat with public key = ed255
 }
 ```
 
-1. Visit the [betanet explorer](https://explorer.betanet.nearprotocol.com/) and check that your staking transaction succeeded:
-2. Run `near state --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com` and see if the amount you've staked is marked as locked, similar to the content below:
+1. Зайдите в [betanet explorer](https://explorer.betanet.nearprotocol.com/) и проверьте, что транзакция завершена успешна:
+2. Запустите`near state --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com` и убедитесь, что на аккаунте есть необходимое количество токенов в состоянии locked:
 
 ```text
 nearkat@nearkat ~ $ near state nearkat
