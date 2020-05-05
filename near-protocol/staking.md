@@ -14,11 +14,11 @@ description: Создание Staking в BetaNet
 
 ### _Перед началом_
 
-Запустите ноду Nearup \([инструкция по установке](https://nodes.cryptasutra.com/near-protocol/nearup)\).
+Запустите ноду `nearup` \([инструкция по установке](https://nodes.cryptasutra.com/near-protocol/nearup)\).
 
-Убедитесь, что нода Nearup успешно и полностью сихнонизирована и только потом открывайте стейкинг. В режиме неполной синхронизации нода не в состоянии создавать и вализировать блоки, так что если вдруг сеть выберет вас вализатором, а ваша нода окажется не в стостоянии выполнять эту роль, то это может повлечь за собой потерю награды и исключение из эпохи.
+Убедитесь, что нода `nearup` успешно и полностью сихнонизирована и только потом открывайте стейкинг. В режиме неполной синхронизации нода не в состоянии создавать и вализировать блоки, так что если вдруг сеть выберет вас вализатором, а ваша нода окажется не в стостоянии выполнять эту роль, то это может повлечь за собой потерю награды и исключение из эпохи.
 
-Стейкинг отключен в сети _TestNet_ и доступен только в _BetaNet_. Поэтому обязательно укажите в NEAR Shell, что работаете в BetaNet, это можно сделать командой `export NODE_ENV=betanet` . Сервисы для работы в каждой сети:
+Стейкинг отключен в сети testnet и доступен только в `betanet`. Поэтому обязательно укажите в NEAR Shell, что работаете в `betanet`, это можно сделать командой `export NODE_ENV=betanet` . Сервисы для работы в каждой сети:
 
 {% tabs %}
 {% tab title="⛔️ TestNet" %}
@@ -46,121 +46,118 @@ description: Создание Staking в BetaNet
 {% endtab %}
 {% endtabs %}
 
-
-
-| ⛔️ TestNet | ✅ BetaNet | MainNet |
-| :--- | :--- | :--- |
-| [https://explorer.testnet.nearprotocol.com](https://explorer.testnet.nearprotocol.com/) | [https://explorer.betanet.nearprotocol.com](https://explorer.betanet.nearprotocol.com/) | [https:~~/~~/explorer.nearprotocol.com](https://explorer.nearprotocol.com/) |
-| [https://wallet.testnet.nearprotocol.com](https://wallet.testnet.nearprotocol.com/) | [https://wallet.betanet.nearprotocol.com](https://wallet.betanet.nearprotocol.com/) | [https://wallet.nearprotocol.com](https://wallet.nearprotocol.com/) |
-| [https://rpc.testnet.nearprotocol.com](https://rpc.testnet.nearprotocol.com/) | [https://rpc.betanet.nearprotocol.com](https://rpc.betanet.nearprotocol.com/) | [https://rpc.nearprotocol.com](https://rpc.nearprotocol.com/) |
-
 Обратите внимание, что сеть BetaNet сбрасывается каждый вторник в 6pm Pacific \(среда 4:00 по Москве\), так что учитывайте необходимость обновления и перезапуска ноды.
 
-## Требования к ноду
+## Требования к нодe
 
-Чтобы стать валидатором, вам потребуется запустить ноду на компьютере или облачном хостинге, опеспечив минимально необходимые требования:
+Чтобы стать валидатором, вам потребуется запустить ноду на компьютере или облачном хостинге, обеспечив минимально необходимые требования:
 
 * Хотя бы 2 CPU 
 * Хотя бы 4GB RAM 
 * Хотя бы 50 GB свободного места на диске
 
-## Setting up your environment
+## Настройка окружения
 
-**IMPORTANT: Make sure you have the latest version of NEAR Shell and Node Version; 10.x**
+**Внимание: Убедитесь, что у вас установлена новейшая версия NEAR Shell и NodeJS версии 10.x**
 
-If this is not the case, follow the setps below to set up your environment; don't worry this won't take long. To stake, make sure that you have
+Если еще не установлено, то мы сейчас это сделаем.
 
-* an account with tokens on **BetaNet**. If you have not set up an account yet, please navigate to the following page, set it up and come right back: [Create Account](https://github.com/nearprotocol/docs/blob/master/docs/local-setup/create-account.md). Remember to use the [BetaNet wallet](https://wallet.betanet.nearprotocol.com/)!
-* `near-shell`, our CLI tool, which which will require [node.js](https://nodejs.org/en/download/) and [npm](https://www.npmjs.com/get-npm). You can check whether you have node.js and npm already installed by
+Итак, для открытия стейкинга потребуется:
 
-  1. Open your command line;
-  2. Type in
+* иметь аккаунт с токенами на **betanet**. Если у вас такого нет, то [создайте аккаунт](https://github.com/nearprotocol/docs/blob/master/docs/local-setup/create-account.md). Используйте именно сеть [betanet](https://wallet.betanet.nearprotocol.com/)!
+* запустить `near-shell`, это интерфейс с управлением через командную строку, для запуска которого потребуется [node.js](https://nodejs.org/en/download/) и [npm](https://www.npmjs.com/get-npm). Чтобы проверить, установлены ли они у вас
 
-  This should display your node version in the command line.
+  1. откройте терминал с командой строкой
+  2. напишите 
 
-  This should display your npm version in the command line.
+     ```text
+     node -v 
+     npm -v
+     ```
 
-  Otherwise, go ahead and install it with the following links [node.js](https://nodejs.org/en/download/). Note that node usually installs npm automatically. However, if you miss npm, please install it [from here](https://www.npmjs.com/get-npm).
+  для проверки версии node.js и npm. Если чего будет недоставать, то установите [node.js](https://nodejs.org/en/download/) \(это автоматически установит npm\). Отдельно npm можно установить [отсюда](https://www.npmjs.com/get-npm).
 
-Once node and npm are installed, go ahead and download the Near Shell; type the following in your terminal:
+Когда всё node.js и npm установлены, пора скачать Near Shell, запустив команду в терминале
 
 ```text
 # Download Near Shell with npm:
 npm i -g near-shell
 ```
 
-Once Near Shell is installed, go ahead and run your node.
+Near Shell запущен, можно перейти к настройке ноды.
 
-### Run a Node
+### Запуск ноды neaup
 
-Now that you have the Near Shell, we can set-up your node. Please follow [Nearup documentation](https://github.com/near/nearup).
+Если вы еще не установили ноду neaup, то воспользуйтесь [инструкцией по установке](https://nodes.cryptasutra.com/near-protocol/nearup).
 
-**IMPORTANT you will need your account ID here, which is your username from the account that you created in the previous step.**
+**Внимание, вам потребуется ваш account ID, который является именем пользователя / адресом кошелька из предыдущего шага.**
 
-Please come back to this screen, once you have completed the previous steps.
+Когда Near Shel запросит account ID, введите имя пользователя на аккаунте, подготовленном для стейкинга. 
 
-When asked for the account ID, enter the username of the account you want to stake with. You will be returned a public key used for staking; this will look similar to:
+{% hint style="info" %}
+Вводите имя пользователя целиком, с указанием сети, например, username.betanet.
+{% endhint %}
+
+Вам будет возвращен публичный ключ следующего вида.
 
 ```text
-Stake for user 'thefutureisnear.test' with 'ed25519:97JLghrxUQMaX2pcerVB5FNFu4qk8rx8J3fnWRyoEB7M'
+Stake for user 'username.betanet' with 'ed25519:97JLghrxUQMaX2pcerVB5FNFu4qk8rx8J3fnWRyoEB7M'
 ```
 
-Make sure you copy this validator\_key as you will need it for the next step. You can also find this public key at the following path in your near files `~/.near/betanet/validator_key.json`
+Удостоверьтесь, что вы скопировали этот this validator\_key, он нам скоро потребуется. В противном случае, его всегда можно найти в файле`~/.near/betanet/validator_key.json`
 
-## Send a staking transaction
+## Отправка транзакции на создание стейкинга
 
-Awesome! Once you completed the previous steps, you are all set for staking.
+Отлично, больше нечего откладывать, всё готово для открытия стейкинга.
 
-First let's authenticate near shell by running the command `near login`
+Давайте пройдем аутентификацию 
 
-You will be asked to navigate to a url to authenticate your staking account.
+```text
+near login
+```
+
+В ответ вам предложат перейти по url для входа в стейкинг-аккаунт. Откройте его в браузере и пройдите аутентификацию.
 
 ```text
 Please navigate to this url and follow the instructions to log in:
 https://wallet.betanet.nearprotocol.com/login/?title=NEAR+Shell&public_key=FSgxX7YwuCveCeYqsSAB3sD8dgdy3XBWztCQcEjimpaN
 ```
 
-Once done, enter that account ID in the shell:
+После этого укажите аккаунт, с которым вы прошли аутентификацию:
 
 ```text
 Please enter the accountId that you logged in with:
 ```
 
-When you have entered your account ID, it will display the following message:
+Когда вы укажете имя аккаунта, может отобразиться следующее сообщение:
 
 `Missing public key for in default` `Logged in with masternode24`
 
-This message is not an error, it just means that it will create a public key for you.
+Это не ошибка, это значит, что сейчас Near Shell сейчас создаст для вас публичный ключ.
 
-Now you're ready to send a staking transaction.
+Теперь можно открыть стейкинг. Укажите accountId в полном виде \(например, username.betanet\) и staking public key, который мы скопировали выше, а также размер стейкинга в токенах NEAR.
 
 ```text
 near stake <accountId> <staking public key> <amount to stake>
 ```
 
-Staking 50,000 NEAR should be enough on BetaNet.
+Стейкинг в 50,000 NEAR будет достаточным для работы валидатором в BetaNet.
 
-You should see a success message that looks something like:
+В случае успеха, вы получите подобное сообщение:
 
 ```text
-Staking 50000 on thefutureisnear with public key = A4inyaard6yzt1HQL8u5BYdWhWQgCB87RbRRHKPepfrn.
+Staking 50000 on username.betanet with public key = A4inyaard6yzt1HQL8u5BYdWhWQgCB87RbRRHKPepfrn.
 ```
 
-## Being chosen to become a validator
+## Работа в роли валидатора
 
-After this, you will need to wait the ~6 hours bonding period on BetaNet to see if you have staked enough to become a validator. You can see you are a validator when in the logs of the node you see "V/" - where V means this node is currently a validator.
+Через 6 часов устойчивой работы обладатели достаточного стейка могут оказаться в роли валидаторов. Чтобы убедиться в том, можно открыть логи и увидеть там статус  "V/" - где V будет означать статус валидатора. Подробнее.
 
-Legend: \# 7153 \| BlockHeight V/1 \| 'V' \(validator\) or '—' \(regular node\)
+## Просмотр полного списка валидаторов и их стейков
 
-The 0/0/40 shows the total validators: connected peers / up to date peers / my peers. This number may change over time.
+Полный список нод-валидаторов `betanet` доступен по ссылке: [http://rpc.betanet.nearprotocol.com/status](http://rpc.betanet.nearprotocol.com/status)
 
-To learn more about how validators are chosen, take a look at the [Validator FAQ](https://github.com/nearprotocol/docs/blob/master/docs/validator/validator-faq.md).
-
-## See current list of Validators and stake amounts
-
-To see the current list of validators, you can take a look here: [http://rpc.betanet.nearprotocol.com/status](http://rpc.betanet.nearprotocol.com/status)
-
-If you would like to see how much a validator is staking, you can run the command `near state`in Near Shell.
+Чтобы посмотреть размер стейка валидатора, можно отправить команду  `near state` в Near Shell.
 
 ```text
 {
@@ -172,7 +169,7 @@ If you would like to see how much a validator is staking, you can run the comman
 }
 ```
 
-## Automatically re-staking
+## Автоматический рестейкинг
 
-NEAR Protocol automatically re-stake your rewards, unless you decide to unlock the funds. Issue the command `near stake` again, with a lower value, and your funds will be unlocked within three epochs \(~9 hours on BetaNet, ~36 hours on TestNet\).
+NEAR Protocol будет автоматичеки открывать рестейкинг для наград до того, как вы решить разблокировать ваши средства. Просто запустите еще раз команду `near stake` , указав значение меньше предыдущего и тогда ваши средства будут разблокированы в течение трех эпох \(~9 часов в `betanet`, ~36 часов в `testnet`\).
 
