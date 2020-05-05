@@ -98,7 +98,7 @@ To check logs call: docker logs --follow nearcore
 near stake <YOUR_ACCOUNT_ID> <VALIDATOR_KEYS_PUBLIC_KEY> <AMOUNT> --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com
 ```
 
-**Внимание:** Размер стейкинга должен быть указан в NEAR, причем на аккаунте должно содержаться достаточное количество токенов. Не кладите в стейкинг 100% вашего баланса, оставьте необходимое количество токенов для работы смартконтракта и оплаты хранения данных аккаунта\(100 $NEAR будет более чем достаточно\).
+**Внимание:** Размер стейкинга должен быть указан в NEAR, причем на аккаунте должно содержаться достаточное количество токенов. Не кладите в стейкинг 100% вашего баланса, оставьте необходимое количество токенов для работы смартконтракта и оплаты хранения данных аккаунта \(100 $NEAR будет более чем достаточно\).
 
 Вы можете получить следующую ошибку, если не указали что нода должна обращаться к `betanet` :
 
@@ -131,6 +131,8 @@ Error:  TypedError: [-32000] Server error: account nearkat does not exist while 
 Чтобы исправить ошибку, запустите команду `export NODE_ENV=betanet` и повторите транзакцию для создания стейкинга.
 
 ### 5. Получите токены для стейкинга через смарт-контракт делегирования \(в разработке\)
+
+Пользователи смогут делегировать свои токены на ноды валидаторов как только соответствующий смарт-контракт будет опубликован.
 
 ## Проверка работоспособности
 
@@ -217,19 +219,19 @@ Staking 70000 (70000000000000000000000000000) on nearkat with public key = ed255
 2. Запустите`near state --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com` и убедитесь, что на аккаунте есть необходимое количество токенов в состоянии locked:
 
 ```text
-nearkat@nearkat ~ $ near state nearkat
+nearkat@nearkat ~ $ near state zavodil.betanet
 Using options: {
   networkId: 'betanet',
   nodeUrl: 'https://rpc.betanet.nearprotocol.com',
   contractName: undefined,
   walletUrl: 'https://wallet.betanet.nearprotocol.com',
   helperUrl: 'https://helper.betanet.nearprotocol.com',
-  accountId: 'nearkat'
+  accountId: 'zavodil.betanet'
 }
-Account nearkat
+Account zavodil.betanet
 {
   amount: '58957995048254107744134739414',
-  locked: '70000000000000000000000000000',
+  locked: '100000000000000000000000000',
   code_hash: '11111111111111111111111111111111',
   storage_usage: 510,
   storage_paid_at: 0,
@@ -240,9 +242,9 @@ Account nearkat
 
 ```
 
-The `locked:` value will express in yoctoNEAR your staked amount.
+Здесь можно увидеть количество токенов в стейке в строке `locked:` . Значение представлено в yoctoNEAR \(10^-24 NEAR\).
 
-1. After two epochs \(24 hours\), you will see the logs of your node appear with a `V/n` to tell you you're validating:
+1. Через 2 эпохи \(24 часа\), вы увидите, что ваша нода присутствует в логах со статусом `V/n` , которая означает что это валидатор:
 
 ```text
 Apr 14 21:44:57.128  INFO stats: # 2556590 XzssUzbfUmtAduVBjob2uGWK6hU8JP8jk4zwm11wRTN V/6 16/15/40 peers ⬇ 65.3kiB/s ⬆ 71.0kiB/s 1.30 bps 0 gas/s CPU: 8%, Mem: 1.2 GiB    
@@ -250,263 +252,29 @@ Apr 14 21:45:07.130  INFO stats: # 2556603 6dpBFao9M1MWRZZe79ohn3z7oAZYzW5yFMCky
 Apr 14 21:45:17.132  INFO stats: # 2556615 BJHBXF9mPqGeLjnbiPR8Y28NjZppZDjRTyiDFLNVbF2G V/6 16/15/40 peers ⬇ 61.9kiB/s ⬆ 72.5kiB/s 1.20 bps 0 gas/s CPU: 7%, Mem: 1.2 GiB    
 ```
 
-The status `V/6` right after the block hash says that you are one of six validators. If the status is `-/6` your node is not yet a validator, or the staking tokens were insufficient. Sometimes you may see the parameter as `F/10`: this means your stake was too small, and you are currently a fisherman \(which has no rewards\).
+Статус`V/6` rсразу после хэша блока говорит о том, что вы являетесь одним из 6 валидаторов. Если статус `-/6` , это значит что либо ваша нода не является валидатором, либо обладает недостаточным количеством токенов в стейкинге. Иногда можно увидеть такой статус как`F/10`: что означает, что размер вашего стейкинг был слишком маленьким и в данный момент вы являетесь рыбаком \(fisherman\) и не получаете награду.
 
-1. Query the Betanet block explorer via JSON RPC, to view all existing proposals:
+1. Отправьте запрос в блоек-эксплорер Betanet через JSON RPC, чтобы получить набор заявок:
 
 ```text
 curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' https://rpc.betanet.nearprotocol.com -v
 ```
 
-The call will return a JSON with the current parameters:
+В ответ вы получите JSON, содержащий следующие параметры:
 
-* current\_validators
-* next\_validators
-* current\_fishermen
-* next\_fishermen
-* **current\_proposals &lt;&lt; your transaction should be here**
-* prev\_epoch\_kickout
+* current\_validators \(текущие валидаторы\)
+* next\_validators \(следующие валидаторы\)
+* current\_fishermen \(текущие рыбаки\)
+* next\_fishermen \(будущие рыбаки\)
+* **current\_proposals \(текущие заявки\)** **&lt;&lt;  ваша транзакция должна быть тут**
+* prev\_epoch\_kickout \(исключены за прошлую эпохи\)
 
-**Click to expand an example of JSON output**
-
-```text
-{
-  "jsonrpc": "2.0",
-  "result": {
-    "current_validators": [
-      {
-        "account_id": "bowen.test",
-        "public_key": "ed25519:2kjQU7uJjWwCgGzS26pz7PtnL2NT98LTZyBNYjr1sYwx",
-        "is_slashed": false,
-        "stake": "97970693373589304551816887209",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 1568,
-        "num_expected_blocks": 1568
-      },
-      {
-        "account_id": "buildlinks.test",
-        "public_key": "ed25519:Bq2SR9R8xwztP5YSudwdMgBXbKa1KcizcKD4QCdK65p7",
-        "is_slashed": false,
-        "stake": "100000000000000000000000000000",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 182,
-        "num_expected_blocks": 1570
-      },
-      {
-        "account_id": "figment-betanet",
-        "public_key": "ed25519:GtFcXjjdo3xs2xafAUstvdNLbw3YDRsv8798qhDfdWau",
-        "is_slashed": false,
-        "stake": "126557431195539821072612918725",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 1812,
-        "num_expected_blocks": 1832
-      },
-      {
-        "account_id": "illia",
-        "public_key": "ed25519:HDGR8HHcKJuPWsfe7rEbmmzMmB1h2sMV3synesYVGf1j",
-        "is_slashed": false,
-        "stake": "237114320489469642690227273793",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 0,
-        "num_expected_blocks": 3665
-      },
-      {
-        "account_id": "nearkat",
-        "public_key": "ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB",
-        "is_slashed": false,
-        "stake": "78222174019581877549836985626",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 1046,
-        "num_expected_blocks": 1046
-      },
-      {
-        "account_id": "node0",
-        "public_key": "ed25519:7PGseFbWxvYVgZ89K1uTJKYoKetWs7BJtbyXDzfbAcqX",
-        "is_slashed": false,
-        "stake": "238339659072897867748078610107",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 3663,
-        "num_expected_blocks": 3663
-      },
-      {
-        "account_id": "node1",
-        "public_key": "ed25519:6DSjZ8mvsRZDvFqFxo8tCKePG96omXW7eVYVSySmDk8e",
-        "is_slashed": false,
-        "stake": "242014825065931544260409042195",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 3925,
-        "num_expected_blocks": 3925
-      },
-      {
-        "account_id": "node2",
-        "public_key": "ed25519:GkDv7nSMS3xcqA45cpMvFmfV1o4fRF6zYo1JRR6mNqg5",
-        "is_slashed": false,
-        "stake": "199913782638170701764620852187",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 3142,
-        "num_expected_blocks": 3142
-      },
-      {
-        "account_id": "node3",
-        "public_key": "ed25519:ydgzeXHJ5Xyt7M1gXLxqLBW1Ejx6scNV5Nx2pxFM8su",
-        "is_slashed": false,
-        "stake": "240935684024498896347812640603",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 3922,
-        "num_expected_blocks": 3922
-      },
-      {
-        "account_id": "unknown.test",
-        "public_key": "ed25519:6VGREgEwSEYqb2qbhjK8PvJc2NJKtdD9zy6RTbAccH3S",
-        "is_slashed": false,
-        "stake": "117392659285106031101261119727",
-        "shards": [
-          0
-        ],
-        "num_produced_blocks": 1832,
-        "num_expected_blocks": 1832
-      }
-    ],
-    "next_validators": [
-      {
-        "account_id": "bowen.test",
-        "public_key": "ed25519:2kjQU7uJjWwCgGzS26pz7PtnL2NT98LTZyBNYjr1sYwx",
-        "stake": "101525336463327823810344355637",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "buildlinks.test",
-        "public_key": "ed25519:Bq2SR9R8xwztP5YSudwdMgBXbKa1KcizcKD4QCdK65p7",
-        "stake": "103242936749015049193558050110",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "hashquark",
-        "public_key": "ed25519:9RHYjfS5eo8CAxnsE7R1VgDCK5ofTbk5z2CtfGkv8MvJ",
-        "stake": "151400000000000000000000000000",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "nearkat",
-        "public_key": "ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB",
-        "stake": "80723946901794317217366119514",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "node0",
-        "public_key": "ed25519:7PGseFbWxvYVgZ89K1uTJKYoKetWs7BJtbyXDzfbAcqX",
-        "stake": "246151555757109477336718079379",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "node1",
-        "public_key": "ed25519:6DSjZ8mvsRZDvFqFxo8tCKePG96omXW7eVYVSySmDk8e",
-        "stake": "250276918680695799107215971895",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "node2",
-        "public_key": "ed25519:GkDv7nSMS3xcqA45cpMvFmfV1o4fRF6zYo1JRR6mNqg5",
-        "stake": "206318272886843319377092484825",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "node3",
-        "public_key": "ed25519:ydgzeXHJ5Xyt7M1gXLxqLBW1Ejx6scNV5Nx2pxFM8su",
-        "stake": "249174529750016868197216096172",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "nuc.test",
-        "public_key": "ed25519:6CZbX8r9DqKNQ5Vd6xDrqsMuygV9HQ8QLecziC41D26p",
-        "stake": "40000000000000000000000000000",
-        "shards": [
-          0
-        ]
-      },
-      {
-        "account_id": "unknown.test",
-        "public_key": "ed25519:6VGREgEwSEYqb2qbhjK8PvJc2NJKtdD9zy6RTbAccH3S",
-        "stake": "121314281134898099361682531845",
-        "shards": [
-          0
-        ]
-      }
-    ],
-    "current_fishermen": [],
-    "next_fishermen": [],
-    "current_proposals": [
-      {
-        "account_id": "nearkat",
-        "public_key": "ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB",
-        "stake": "76000000000000000000000000000"
-      }
-    ],
-    "prev_epoch_kickout": [
-      {
-        "account_id": "figment-betanet",
-        "reason": {
-          "NotEnoughBlocks": {
-            "produced": 0,
-            "expected": 3025
-          }
-        }
-      },
-      {
-        "account_id": "illia",
-        "reason": {
-          "NotEnoughBlocks": {
-            "produced": 0,
-            "expected": 6048
-          }
-        }
-      }
-    ]
-  },
-  "id": "dontcare"
-}
-```
-
-Every entry in the `current_validators` object of the JSON above provides the expected uptime:
+Каждая запись в объекте `current_validators` содержит ожидаемый аптайм:
 
 ```text
 "current_validators": [
             {
-                "account_id": "nearkat",
+                "account_id": "zavodil.betanet",
                 "public_key": "ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB",
                 "is_slashed": false,
                 "stake": "75932253155495715897593582482",
@@ -519,17 +287,21 @@ Every entry in the `current_validators` object of the JSON above provides the ex
     ]
 ```
 
-Be sure that `num_produced_blocks` is the same of `num_expected_blocks`, otherwise your node risks to be kicked out \(see "Maintaining the Validator Seat" in the [validator economics docs](https://docs.nearprotocol.com/docs/validator/economics) for more details\).
+Убедитесь, что  `num_produced_blocks` равно значению `num_expected_blocks`, иначе появляется риск, что ваша нода будет исключена \(подробнее  в статье "Обеспечение позиции валидатора" раздела [validator economics docs](https://docs.nearprotocol.com/docs/validator/economics)\).
 
-## Stop your node
+## Остановка ноды
 
-First, release your funds, by setting to zero your stake:
+Сначала, требуется освободить средства, установив размер своего стейкинга как 0:
 
 ```text
 near stake <YOUR_ACCOUNT_ID> <VALIDATOR_KEYS_PUBLIC_KEY> 0 --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com
 ```
 
-Wait for two epochs \(6 hours\) and shut down your node. You may kill the validator process straight away, but it will have an impact on the network performance \(less throughput\) and other users will not be happy!
+Далее можно подождать 2 эпохи \(6 часов\) и выключить свою ноду. Если отключить валидатора без этого ожидания, это повлечет негативное воздействие на быстродействие всей сети и вызовет недовольство других пользователей.
 
-To stop your node, simply issue the command:
+Чтобы остановить ноды, достаточно выполнить команду:
+
+```text
+nearup stop
+```
 
