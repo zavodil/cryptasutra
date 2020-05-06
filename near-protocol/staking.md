@@ -159,7 +159,7 @@ Please enter the accountId that you logged in with:
 near stake <accountId> <staking public key> <amount to stake>
 ```
 
-Стейкинг в 50 000 NEAR будет достаточным для работы валидатором в `betanet`.
+Стейкинг в размере около 50 000 токенов NEAR будет будет достаточным для работы валидатором в `betanet`.
 
 В случае успеха, вы получите подобное сообщение:
 
