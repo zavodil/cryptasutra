@@ -132,5 +132,3 @@ nearup betanet --help
 
 {% page-ref page="nearup.md" %}
 
-
-
