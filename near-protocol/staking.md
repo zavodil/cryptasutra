@@ -24,27 +24,27 @@ description: Создание Staking в BetaNet
 
 {% tabs %}
 {% tab title="⛔️ TestNet" %}
-Блок-эксплорер [https://explorer.testnet.nearprotocol.com/](https://explorer.testnet.nearprotocol.com/)
+Блок-эксплорер [https://explorer.testnet.near.org/](https://explorer.testnet.near.org/)
 
-Кошелек [https://wallet.testnet.nearprotocol.com/](https://wallet.testnet.nearprotocol.com/)
+Кошелек [https://wallet.testnet.near.org/](https://wallet.testnet.near.org/)
 
-Удалённый вызов процедур [https://rpc.testnet.nearprotocol.com/](https://rpc.testnet.nearprotocol.com/)
+Удалённый вызов процедур [https://rpc.testnet.near.org/](https://rpc.testnet.near.org/)
 {% endtab %}
 
 {% tab title="✅ BetaNet" %}
-Блок-эксплорер [https://explorer.betanet.nearprotocol.com/](https://explorer.betanet.nearprotocol.com/)
+Блок-эксплорер [https://explorer.betanet.near.org/](https://explorer.betanet.near.org/)
 
-Кошелек [https://wallet.betanet.nearprotocol.com/](https://wallet.betanet.nearprotocol.com/)
+Кошелек [https://wallet.betanet.near.org/](https://wallet.betanet.near.org/)
 
-Удалённый вызов процедур [https://rpc.betanet.nearprotocol.com/](https://rpc.betanet.nearprotocol.com/)
+Удалённый вызов процедур [https://rpc.betanet.near.org/](https://rpc.betanet.near.org/)
 {% endtab %}
 
 {% tab title="MainNet" %}
-Блок-эксплорер [https://explorer.nearprotocol.com/](https://explorer.nearprotocol.com/)
+Блок-эксплорер [https://explorer.near.org](https://explorer.near.org/)
 
-Кошелек [https://wallet.nearprotocol.com/](https://wallet.nearprotocol.com/)
+Кошелек [https://wallet.near.org/](https://wallet.near.org/)
 
-Удалённый вызов процедур [https://rpc.nearprotocol.com/](https://rpc.nearprotocol.com/)
+Удалённый вызов процедур [https://rpc.near.org/](https://rpc.near.org/)
 {% endtab %}
 {% endtabs %}
 
