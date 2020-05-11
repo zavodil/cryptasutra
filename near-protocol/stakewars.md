@@ -101,7 +101,7 @@ To check logs call: docker logs --follow nearcore
 Вводим команду для создание стейкинга
 
 ```text
-near stake <YOUR_ACCOUNT_ID> <VALIDATOR_KEYS_PUBLIC_KEY> <AMOUNT> --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com
+near stake <YOUR_ACCOUNT_ID> <VALIDATOR_KEYS_PUBLIC_KEY> <AMOUNT> --walletUrl https://wallet.betanet.near.org --helperUrl https://helper.betanet.near.org --nodeUrl https://rpc.betanet.near.org
 ```
 
 **Внимание:** Размер стейкинга должен быть указан в токенах NEAR, причем на аккаунте должно содержаться достаточное количество токенов. Не кладите в стейкинг 100% вашего баланса, оставьте необходимое количество токенов для работы смартконтракта и оплаты хранения данных аккаунта \(100 токенов NEAR будет более чем достаточно\).
@@ -112,10 +112,10 @@ near stake <YOUR_ACCOUNT_ID> <VALIDATOR_KEYS_PUBLIC_KEY> <AMOUNT> --walletUrl ht
 nearkat@nearkat ~ % near stake zavodil.betanet ed25519:8qfcviFnPucrMvN19f1hoVKhhtntGjosRHNJzaXiRem7 100
 Using options: {
   networkId: 'default',
-  nodeUrl: 'https://rpc.nearprotocol.com',
+  nodeUrl: 'https://rpc.betanet.near.org',
   contractName: undefined,
-  walletUrl: 'https://wallet.nearprotocol.com',
-  helperUrl: 'https://helper.nearprotocol.com',
+  walletUrl: 'https://wallet.betanet.near.org',
+  helperUrl: 'https://helper.betanet.near.org',
   accountId: 'zavodil.betanet',
   stakingKey: 'ed25519:8qfcviFnPucrMvN19f1hoVKhhtntGjosRHNJzaXiRem7',
   amount: '100'
@@ -147,7 +147,7 @@ Error:  TypedError: [-32000] Server error: account nearkat does not exist while 
 ![&#x41D;&#x43E;&#x432;&#x43E;&#x435; &#x441;&#x43E;&#x431;&#x44B;&#x442;&#x438;&#x435; &#x432; &#x431;&#x43B;&#x43E;&#x43A;-&#x44D;&#x43A;&#x441;&#x43F;&#x43B;&#x43E;&#x440;&#x435;&#x440;&#x435;](../.gitbook/assets/stake_tx_explorer.png)
 
 1. Корректный ответ на транзакцию в `near-shell`
-2. Новое событие в [блок-эксплорере](https://explorer.betanet.nearprotocol.com/) `betanet` \(см. картинку выше\)
+2. Новое событие в [блок-эксплорере](https://explorer.betanet.near.org/) `betanet` \(см. картинку выше\)
 3. Правильное отображение баланса аккаунта, полученного командой `near state` 
 4. Обновления в логах `nearup`, сопровождаемые заглавной буквой "V"
 5. Запрос JSON RPC, отправленный на endpoint `validator` 
@@ -157,10 +157,10 @@ Error:  TypedError: [-32000] Server error: account nearkat does not exist while 
 nearkat@nearkat ~ $ near stake nearkat ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB 70000
 Using options: {
   networkId: 'betanet',
-  nodeUrl: 'https://rpc.betanet.nearprotocol.com',
+  nodeUrl: 'https://rpc.betanet.near.org',
   contractName: undefined,
-  walletUrl: 'https://wallet.betanet.nearprotocol.com',
-  helperUrl: 'https://helper.betanet.nearprotocol.com',
+  walletUrl: 'https://wallet.betanet.near.org',
+  helperUrl: 'https://helper.betanet.near.org',
   accountId: 'nearkat',
   stakingKey: 'ed25519:BE8hs6LuFbG5j1C2tLXKUT2NqRLbCxwBCKXqte9qZ1HB',
   amount: '70000'
@@ -223,17 +223,17 @@ Staking 70000 (70000000000000000000000000000) on nearkat with public key = ed255
 }
 ```
 
-1. Зайдите в [betanet explorer](https://explorer.betanet.nearprotocol.com/) и проверьте, что транзакция завершена успешна:
-2. Запустите`near state --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com` и убедитесь, что на аккаунте есть необходимое количество токенов в состоянии locked:
+1. Зайдите в [betanet explorer](https://explorer.betanet.near.org/) и проверьте, что транзакция завершена успешна:
+2. Запустите`near state --walletUrl https://wallet.betanet.near.org --helperUrl https://helper.betanet.near.org --nodeUrl https://rpc.betanet.near.org` и убедитесь, что на аккаунте есть необходимое количество токенов в состоянии locked:
 
 ```text
 nearkat@nearkat ~ $ near state zavodil.betanet
 Using options: {
   networkId: 'betanet',
-  nodeUrl: 'https://rpc.betanet.nearprotocol.com',
+  nodeUrl: 'https://rpc.betanet.near.org',
   contractName: undefined,
-  walletUrl: 'https://wallet.betanet.nearprotocol.com',
-  helperUrl: 'https://helper.betanet.nearprotocol.com',
+  walletUrl: 'https://wallet.betanet.near.org',
+  helperUrl: 'https://helper.betanet.near.org',
   accountId: 'zavodil.betanet'
 }
 Account zavodil.betanet
@@ -265,7 +265,7 @@ Apr 14 21:45:17.132  INFO stats: # 2556615 BJHBXF9mPqGeLjnbiPR8Y28NjZppZDjRTyiDF
 1. Отправьте запрос в блок-эксплорер `betanet` через JSON RPC, чтобы получить набор заявок:
 
 ```text
-curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' https://rpc.betanet.nearprotocol.com -v
+curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' https://rpc.betanet.near.org -v
 ```
 
 В ответ вы получите JSON, содержащий следующие параметры:
@@ -295,14 +295,14 @@ curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": 
     ]
 ```
 
-Убедитесь, что  `num_produced_blocks` равно значению `num_expected_blocks`, иначе появляется риск, что ваша нода будет исключена \(подробнее  в статье "Обеспечение позиции валидатора" раздела [validator economics docs](https://docs.nearprotocol.com/docs/validator/economics)\).
+Убедитесь, что  `num_produced_blocks` равно значению `num_expected_blocks`, иначе появляется риск, что ваша нода будет исключена \(подробнее  в статье "Обеспечение позиции валидатора" раздела [validator economics docs](https://docs.near.org/docs/validator/economics)\).
 
 ## Остановка ноды
 
 Перед остановкой ноды потребуется освободить средства, установив размер своего стейкинга как 0:
 
 ```text
-near stake <YOUR_ACCOUNT_ID> <VALIDATOR_KEYS_PUBLIC_KEY> 0 --walletUrl https://wallet.betanet.nearprotocol.com --helperUrl https://helper.betanet.nearprotocol.com --nodeUrl https://rpc.betanet.nearprotocol.com
+near stake <YOUR_ACCOUNT_ID> <VALIDATOR_KEYS_PUBLIC_KEY> 0 --walletUrl https://wallet.betanet.near.org --helperUrl https://helper.betanet.near.org --nodeUrl https://rpc.betanet.near.org
 ```
 
 Далее можно подождать 2 эпохи \(6 часов\) и выключить свою ноду. Если отключить валидатора без этого ожидания, это повлечет негативное воздействие на быстродействие всей сети и может вызвать соответствующие проблемы и недовольство пользователей.

@@ -66,7 +66,7 @@ description: Создание Staking в BetaNet
 
 Итак, для открытия стейкинга потребуется:
 
-* создать аккаунт с токенами на **`betanet`**. Если у вас такого нет, то [создайте аккаунт](https://github.com/nearprotocol/docs/blob/master/docs/local-setup/create-account.md). Используйте именно сеть [betanet](https://wallet.betanet.nearprotocol.com/)! Токены будут автоматически добавлены на аккаунт.
+* создать аккаунт с токенами на **`betanet`**. Если у вас такого нет, то [создайте аккаунт](https://github.com/nearprotocol/docs/blob/master/docs/local-setup/create-account.md). Используйте именно сеть [betanet](https://wallet.betanet.near.org/)! Токены будут автоматически добавлены на аккаунт.
 * запустить `near-shell`, это интерфейс с управлением через командную строку, для запуска которого потребуется [node.js](https://nodejs.org/en/download/) и [npm](https://www.npmjs.com/get-npm). Чтобы проверить, установлены ли они у вас:
 
   1. откройте терминал с командой строкой
@@ -138,7 +138,7 @@ near login
 
 ```text
 Please navigate to this url and follow the instructions to log in:
-https://wallet.betanet.nearprotocol.com/login/?title=NEAR+Shell&public_key=FSgxX7YwuCveCeYqsSAB3sD8dgdy3XBWztCQcEjimpaN
+https://wallet.betanet.near.org/login/?title=NEAR+Shell&public_key=FSgxX7YwuCveCeYqsSAB3sD8dgdy3XBWztCQcEjimpaN
 ```
 
 После этого укажите в Near Shell аккаунт, с которым вы прошли аутентификацию:
@@ -175,7 +175,7 @@ Staking 50000 on username.betanet with public key = A4inyaard6yzt1HQL8u5BYdWhWQg
 
 ## Просмотр полного списка валидаторов и их стейков
 
-Полный список нод-валидаторов `betanet` доступен по ссылке: [http://rpc.betanet.nearprotocol.com/status](http://rpc.betanet.nearprotocol.com/status)
+Полный список нод-валидаторов `betanet` доступен по ссылке: [http://rpc.betanet.near.org/status](http://rpc.betanet.near.org/status)
 
 Чтобы посмотреть размер стейка валидатора, можно отправить следующую команду  в Near Shell:
 
