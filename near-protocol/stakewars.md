@@ -21,7 +21,7 @@ description: Программа вознаграждения за стейкин
 ### Как стать валидатором в Stake Wars 2.0
 
 * Заполните [специальную форму](https://forms.gle/5KabPsD4BefR6nv68), чтобы зарегистрироваться в программе Stake Wars 2.0 и получить токены для стейкинга
-* Создайте своей кошелек в сети `betanet` с использованием кошелька [hosted betanet wallet](https://wallet.betanet.nearprotocol.com/)
+* Создайте своей кошелек в сети `betanet` с использованием кошелька [hosted betanet wallet](https://wallet.betanet.near.org/)
 * Откройте и настройте Ubuntu/Debian VPS-хостинг, запустите ноду `nearup` согласно [инструкции \(русский язык\)](https://nodes.cryptasutra.com/near-protocol/nearup) 
 * Добавьте своего валидатора в [этот файл](https://github.com/nearprotocol/stakewars/blob/master/VALIDATORS.md) - отредактируйте и создайте запрос на pull request 
 
