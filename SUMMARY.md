@@ -8,5 +8,5 @@
 * [Запуск ноды Nearup в Near Protocol](near-protocol/nearup.md)
 * [Запуск стейкинга в Near Protocol](near-protocol/staking.md)
 * [Создание ноды в NEAR для StakeWars 2.0](near-protocol/stakewars.md)
-* [Cмарт-контракт стейкинг-пула NEAR](untitled.md)
+* [Cмарт-контракт стейкинг-пула NEAR](staking-pool-contact.md)
 
