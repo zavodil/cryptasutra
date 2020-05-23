@@ -25,6 +25,7 @@ description: 'Инструкция для нод в devnet, betanet и testnet'
 В Ubuntu их можно разом установить следующей командой:
 
 ```text
+sudo apt update
 sudo apt install python3 git curl
 ```
 
