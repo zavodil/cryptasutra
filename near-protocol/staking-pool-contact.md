@@ -137,6 +137,9 @@ rustup target add wasm32-unknown-unknown
 ### Запускаем создание контракта
 
 ```text
+mkdir -p ~/stakewars
+cd ~/stakewars
+git clone https://github.com/near/initial-contracts && cd initial-contracts/staking-pool
 ./build.sh
 ```
 
@@ -145,10 +148,12 @@ rustup target add wasm32-unknown-unknown
 Команды для развертывания и инициализации стейкинг-контракта:
 
 ```text
+# Создаем новый аккаунт для валидации с именем `my_validator` и владельцем `owner` (владельцем должен быть основной аккаунт)
 near create_account my_validator --masterAccount=owner
+# Загружаем контракт на аккаунт `my_validator`
 near deploy --accountId=my_validator --wasmFile=res/staking_pool.wasm
-# Initialize staking pool at account `my_validator` for the owner account ID `owner`, given staking pool and 10% reward fee.
-near call my_validator new '{"owner_id": "owner", "stake_public_key": "CE3QAXyVLeScmY9YeEyR3Tw9yXfjBPzFLzroTranYtVb", "reward_fee_fraction": {"numerator": 10, "denominator": 100}}' --account_id owner
+# Инициализируем стейкинг пул на аккаунте `my_validator`, `owner` - основной аккаунт, `my_validator_pub_key` - публичный ключ для `my_validator` (можно узнать командой `near keys my_validator | grep public_key`)
+near call my_validator new '{"owner_id": "owner", "stake_public_key": "my_validator_pub_key", "reward_fee_fraction": {"numerator": 10, "denominator": 100}}' --account_id owner
 # TODO: Delete all access keys from the `my_validator` account
 ```
 
