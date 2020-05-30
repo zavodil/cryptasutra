@@ -151,6 +151,10 @@ git clone https://github.com/near/initial-contracts && cd initial-contracts/stak
 
 Команды для развертывания и инициализации стейкинг-контракта:
 
+{% hint style="danger" %}
+Приведенные ниже названия `my_validator` и `owner` даны для примера. Обязательно исправляйте их на собственные названия.
+{% endhint %}
+
 1. Создаем новый аккаунт для валидации с именем `my_validator` и владельцем `owner` \(владельцем должен быть основной аккаунт\)
 
    ```text
@@ -163,7 +167,7 @@ git clone https://github.com/near/initial-contracts && cd initial-contracts/stak
    near deploy --accountId=my_validator --wasmFile=res/staking_pool.wasm
    ```
 
-3. Инициализируем стейкинг пул на аккаунте `my_validator`, `owner` - основной аккаунт, my\_stake\_public\_key - публичный ключ для текущего стейкинга \(можно узнать из ~/.near/betanet/validator\_key.json\)
+3. Инициализируем стейкинг-пул на аккаунте `my_validator`, `owner` - основной аккаунт, my\_stake\_public\_key - публичный ключ для текущего стейкинга \(можно узнать из ~/.near/betanet/validator\_key.json\)
 
    ```text
    near call my_validator new '{"owner_id": "owner", "stake_public_key": "my_stake_public_key", "reward_fee_fraction": {"numerator": 10, "denominator": 100}}' --account_id owner
@@ -171,9 +175,17 @@ git clone https://github.com/near/initial-contracts && cd initial-contracts/stak
 
 4. Удаляем ключи доступа из аккаунта контракта `my_validator_pub_key` - публичный ключ для `my_validator` \(можно узнать командой `near keys my_validator | grep public_key`\)
 
-```text
-near delete-key --accountId=my_validator  "my_validator_pub_key"
-```
+   ```text
+   near delete-key --accountId=my_validator  "my_validator_pub_key"
+   ```
+
+5. Отредактируйте файл ~/.near/betanet/validator\_key.json и впишите в поле account\_id название контракта стейкинг-пула. Остальные поля не исправляем
+6. Перезапустите ноду.
+
+   ```text
+   nearup stop
+   nearup betanet
+   ```
 
 #### Делегирование средств на контракт стейкинг-пула
 
