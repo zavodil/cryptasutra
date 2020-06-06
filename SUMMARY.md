@@ -9,4 +9,5 @@
 * [Запуск стейкинга в Near Protocol](near-protocol/staking.md)
 * [Создание ноды в NEAR для StakeWars 2.0](near-protocol/stakewars.md)
 * [Cмарт-контракт стейкинг-пула NEAR](near-protocol/staking-pool-contact.md)
+* [Программа гильдий в NEAR](near-protocol/guilds.md)
 
