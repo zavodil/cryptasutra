@@ -11,3 +11,7 @@
 * [Cмарт-контракт стейкинг-пула NEAR](near-protocol/staking-pool-contact.md)
 * [Программа гильдий в NEAR](near-protocol/guilds.md)
 
+## Avalanche
+
+* [Запуск релиза AVA Denali](avalanche/ava-denali.md)
+
