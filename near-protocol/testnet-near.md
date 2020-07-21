@@ -6,7 +6,7 @@ description: 'Инструкция для тех, кто перемещает с
 
 ### Создание кошелька
 
-Кошелек в testnet создается по адресу https://wallet.testnet.near.org/
+Кошелек в testnet создается по адресу [https://wallet.testnet.near.org/](https://wallet.testnet.near.org)
 
 ### Подготовка ноды
 
