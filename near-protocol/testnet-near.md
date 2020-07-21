@@ -43,6 +43,8 @@ near call stakingpool create_staking_pool '{"staking_pool_id":"<POOL_ID>", "owne
 
  `VALIDATOR_KEY` - это значение переменной public key в файле`~/.near/testnet/validator_key.json` с данного сервера. Файл не появится, пока нода не будет запущена в testnet.
 
+ `{"numerator": <X>, "denominator": <Y>}` устанавливают комиссию ноды. Чтобы задать 10% сборов, установите x=10 и y=100.
+
 ### Получение делегирования в стейкинг-пул
 
 [Заполните форму](https://nearprotocol1001.typeform.com/to/x4Bval) для получения стейка в делегирование от разработчиков.
