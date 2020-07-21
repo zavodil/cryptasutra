@@ -38,12 +38,14 @@ near create_account <POOL_ID> --masterAccount=<OWNER_ID>
 Создайте контракт стейкинг-пула
 
 ```text
-near call stakingpool create_staking_pool '{"staking_pool_id":"<POOL_ID>", "owner_id":"<OWNER_ID>", "stake_public_key":"<VALIDATOR_KEY>", "reward_fee_fraction": {"numerator": <X>, "denominator": <Y>}}' --account_id <OWNER_ID> --amount 30 --gas 300000000000000
+near call pool.6fb1358 create_staking_pool '{"staking_pool_id":"<POOL_ID>", "owner_id":"<OWNER_ID>", "stake_public_key":"<VALIDATOR_KEY>", "reward_fee_fraction": {"numerator": <X>, "denominator": <Y>}}' --account_id <OWNER_ID> --amount 30 --gas 300000000000000
 ```
 
  `VALIDATOR_KEY` - это значение переменной public key в файле`~/.near/testnet/validator_key.json` с данного сервера. Файл не появится, пока нода не будет запущена в testnet.
 
  `{"numerator": <X>, "denominator": <Y>}` устанавливают комиссию ноды. Чтобы задать 10% сборов, установите x=10 и y=100.
+
+Контракт `pool.6fb1358` - это новая версия контракта `stakingpool` \(который использовался ранее\). Новый контракт имеет механизм голосования. После этого ваш адрес будет `<POOL_ID>.pool.6fb1358`.
 
 ### Получение делегирования в стейкинг-пул
 
