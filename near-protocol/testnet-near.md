@@ -19,7 +19,7 @@ description: 'Инструкция для тех, кто перемещает с
 Переключите окружение на testnet
 
 ```
-$  export NODE_ENV=testnet
+export NODE_ENV=testnet
 ```
 
 Запустите ноду и проведите авторизацию аналогично [процедуре betanet](https://nodes.cryptasutra.com/near-protocol/staking#otpravka-tranzakcii-na-sozdanie-steikinga).
