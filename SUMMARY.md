@@ -11,6 +11,7 @@
 * [Создание ноды в NEAR для StakeWars 2.0](near-protocol/stakewars.md)
 * [Cмарт-контракт стейкинг-пула NEAR](near-protocol/staking-pool-contact.md)
 * [Программа гильдий в NEAR](near-protocol/guilds.md)
+* [Переход ноды NEAR из Testnet в Mainnet](near-protocol/perekhod-nody-near-iz-testnet-v-mainnet.md)
 * [English](near-protocol/english/README.md)
   * [Quick launch with Docker Stake Wars 2.0 \(English\)](near-protocol/english/quick-launch-with-docker-stake-wars-2.0-english.md)
 
