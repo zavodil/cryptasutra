@@ -48,7 +48,7 @@ near call poolv1.near create_staking_pool '{"staking_pool_id":"", "owner_id":"",
 
 ```text
  git clone --branch 1.11.1 https://github.com/nearprotocol/nearcore.git
- cd nearprotocol
+ cd nearcore
 ```
 
 Скомпилируйте бинарные файлы с параметром **`--release` :**
