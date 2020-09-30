@@ -63,7 +63,7 @@ near call <<staking_pool>> deposit_and_stake '{"amount": "<<amount>>"}' --accoun
 
 Где &lt;&lt;lockup\_contract&gt;&gt; - имя вашего lockup-контракта, &lt;&lt;staking\_pool&gt;&gt; - имя стейкинг-пула, &lt;&lt;amount&gt;&gt; - размер стейка для делегирования в yoctoNear, а &lt;&lt;account\_id&gt;&gt; - ваш аккаунт, которым вы выполнили near login. Имена надо вводить без спец символов \(`@, <>` не требуются\). Значение в yoctoNear можно получить командой /convert в телеграм-боте[ ](%20https://t.me/nearup_bot)[@nearup\_bot](%20https://t.me/nearup_bot), для примера `1 NEAR = 1000000000000000000000000 yoctoNear`.
 
-## Снятие токенов с делегирования через CLI
+### Снятие токенов с делегирования через CLI
 
 Чтобы снять делегирования, сначала потребуется запустить `unstake`:
 
