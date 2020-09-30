@@ -5,10 +5,10 @@
 ## Near Protocol
 
 * [Stake Wars: Часть II](near-protocol/stake-wars-episode-2.md)
+* [Делегирование токенов в NEAR Mainnet](near-protocol/delegirovanie-tokenov-v-near-mainnet.md)
 * [Переход ноды NEAR из Testnet в Mainnet](near-protocol/perekhod-nody-near-iz-testnet-v-mainnet.md)
 * [Программа гильдий в NEAR](near-protocol/guilds.md)
 * [Устаревшее](near-protocol/ustarevshee/README.md)
-  * [Делегирование токенов в NEAR Mainnet](near-protocol/ustarevshee/delegirovanie-tokenov-v-near-mainnet.md)
   * [Запуск ноды Nearup в Near Protocol](near-protocol/ustarevshee/nearup.md)
   * [Создание ноды в NEAR для StakeWars 2.0](near-protocol/ustarevshee/stakewars.md)
   * [Создание контракта стейкинг-пула в Testnet Near](near-protocol/ustarevshee/testnet-near.md)
