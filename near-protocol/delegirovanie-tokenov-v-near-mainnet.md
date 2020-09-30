@@ -81,7 +81,11 @@ near call <<staking_pool>> withdraw_all_from_staking_pool --accountId <<account_
 Внимание, для заблокированных lockup-контрактов, вместо `staking_pool` укажите `lockup_contract`.
 {% endhint %}
 
-### Создание делегации через веб-кошелек
+### Создание делегации через официальный веб-кошелек
 
 В данный момент недоступно, следите за обновлениями в группе [https://t.me/near\_protocol](https://t.me/near_protocol).
+
+### Создание делегирования через сторонний веб-сайт:
+
+Только для разблокированных токенов: [https://staking.dokia.cloud/staking/near/validators](https://staking.dokia.cloud/staking/near/validators)
 
