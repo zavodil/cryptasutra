@@ -42,6 +42,10 @@ That's a tough question but thankfully, our team is on it. Please bear with us w
 * [@near\_protocol](https://twitter.com/near_protocol) - русскоязычный твиттер с новостями экосистемы
 * [Канал в Discord](http://near.chat)
 
+## Как задать вопрос?
+
+Добавлять вопросы и  ответы в данный FAQ можно в [Github](https://github.com/zavodil/cryptasutra/blob/master/near-protocol/faq.md), он автоматически появится на данном сайте.
+
 {% hint style="info" %}
 Полезные ссылки:
 
