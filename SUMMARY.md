@@ -4,6 +4,7 @@
 
 ## Near Protocol
 
+* [FAQ](near-protocol/faq.md)
 * [Stake Wars: Часть II](near-protocol/stake-wars-episode-2.md)
 * [Делегирование токенов в NEAR Mainnet](near-protocol/delegirovanie-tokenov-v-near-mainnet.md)
 * [Переход ноды NEAR из Testnet в Mainnet](near-protocol/perekhod-nody-near-iz-testnet-v-mainnet.md)
