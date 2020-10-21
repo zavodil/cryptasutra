@@ -22,7 +22,7 @@ That's a tough question but thankfully, our team is on it. Please bear with us w
 
 ## Как стать валидатором в NEAR?
 
-Любой может запустить ноду NEAR, для этого понадобится сервер \([инструкция для создания мейннет-ноды](https://docs.near.org/docs/validator/deploy-on-mainnet)\), а валидирующей ноде понадобится еще и стейк в токенах NEAR, как показатель доверия делегаторов. [Список валидирующих нод](https://explorer.near.org/nodes/validators) доступе в блок-эксплорере.
+Любой может запустить ноду NEAR, для этого понадобится сервер \([инструкция для создания мейннет-ноды](https://docs.near.org/docs/validator/deploy-on-mainnet)\), а валидирующей ноде понадобится еще и стейк в токенах NEAR, как показатель доверия делегаторов. [Список валидирующих нод](https://explorer.near.org/nodes/validators) доступен в блок-эксплорере.
 
 ## Как начать разрабатывать приложения на NEAR?
 
